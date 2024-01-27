@@ -1,5 +1,8 @@
 ---
 theme: Seriph
+fonts:
+  # for code blocks, inline code, etc.
+  mono: 'SF Mono'
 ---
 
 # TypeScript Sharing
