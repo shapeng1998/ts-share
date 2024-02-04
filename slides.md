@@ -23,6 +23,10 @@ fonts:
 TypeScript 是一个结构化的类型系统，不同于 Java 等语言的标称类型系统，这种设计更符合我们平时开发 JavaScript 的习惯。
 
 ```ts {monaco}
+type ShowType<T> = {
+  [K in keyof T]: T[K];
+};
+
 interface Point {
   x: number;
   y: number;
@@ -59,10 +63,11 @@ TypeScript: from zero to hero.
 除了 babel 和 Webpack，如何使用现代化的工具开发 TypeScript。
 
 - Client side
-  - vite: 原生支持 TypeScript
+  - [vite](https://vitejs.dev/): 原生支持创建 TypeScript 项目模板
+  - [Rsbuild](https://rsbuild.dev/): 原生支持创建 TypeScript 项目模板
 - Server side
-  - deno: 原生支持 TypeScript
-  - tsx + unbuild: 使用 tsx 开发并且使用 unbuild / tsup 打包
+  - [deno](https://deno.com/): 原生支持 TypeScript
+  - [tsx](https://github.com/privatenumber/tsx) + [unbuild](https://github.com/unjs/unbuild): 使用 tsx 开发并且使用 unbuild / tsup 打包
 - ESLint config
   - TypeScript + ESLint: @typescript-eslint
   - ESLint + prettier: eslint-config-prettier
@@ -191,6 +196,11 @@ type t = GetTeam<{ name: string; team: 'RNG' }>;
 type p = Parameters<(x: number, y: string) => void>; // [x: number, y: number]
 type r = ReturnType<() => { hello: string }>; // { hello: string }
 type a = Awaited<Promise<boolean>>; // boolean
+
+// answer
+type MyParameters<T extends (...args: any[]) => any> = T extends (...args: infer F) => any ? F : never;
+type MyReturnType<T extends (...args: any[]) => any> = T extends (...args: any[]) => infer R ? R : never;
+type MyAwaited<T extends Promise<any>> = T extends Promise<infer P> ? (P extends Promise<any> ? Awaited<P> : P) : never;
 ```
 
 ---
@@ -345,3 +355,14 @@ type Tail<T extends number[]> = T extends [unknown, ...infer Tail] ? Tail : [];
 
 type TwoSum<T extends number[], U extends number, Set = never> = any;
 ```
+
+---
+
+# Some Tools and Resources
+
+授人以渔不如授人以渔
+
+- [Total TypeScript](https://www.totaltypescript.com/articles)
+- [TypeScript Compiler Notes](https://github.com/orta/TypeScript-Compiler-Notes)
+- [TypeHero](https://typehero.dev/)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
