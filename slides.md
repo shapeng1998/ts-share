@@ -68,6 +68,9 @@ TypeScript: from zero to hero.
 - Server side
   - [deno](https://deno.com/): 原生支持 TypeScript
   - [tsx](https://github.com/privatenumber/tsx) + [unbuild](https://github.com/unjs/unbuild): 使用 tsx 开发并且使用 unbuild / tsup 打包
+- Full stack framework
+  - [Next.js](https://nextjs.org/)
+  - [Remix](https://remix.run/)
 - ESLint config
   - TypeScript + ESLint: @typescript-eslint
   - ESLint + prettier: eslint-config-prettier
